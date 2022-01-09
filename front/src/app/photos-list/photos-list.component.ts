@@ -8,15 +8,19 @@ export class PhotosListComponent implements OnInit {
   constructor() {}
   ngOnInit() {
   }
+  // Declaration des variables
   popupUpdate=false;
   imageData = data;
   searchText: string="";
   myTempIndex:number=-1;
   myTempComment:string="";
+
+  //Fonction d'upload des photos
   createPhoto(){
     console.log("create works!");
   }
 
+  //Fonctions de modification des commentaires
   updateIndex(index:number){
     this.myTempIndex=index;
     console.log(this.myTempIndex);
@@ -28,6 +32,7 @@ export class PhotosListComponent implements OnInit {
 
   }
 
+  //Fonction de suppression de photos
   deletePhoto(i:number){
     console.log("delete works!");
     this.imageData.splice(i, 1);

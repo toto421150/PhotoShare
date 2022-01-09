@@ -1,11 +1,12 @@
+<!--Page de diaporama-->
 <div class="d-flex justify-content-center">
     <h2>Preview all your photos beneath !</h2>
 </div>
+<!--Librairie pour le défilement-->
 <gallery class="custom" id="basic-test" fluid [items]="items" [autoPlay]="true" [dots]="false"></gallery>
-
 <br>
+<!--Affichage en plein ecran-->
 <div class="d-flex justify-content-center">
-    <!--<button mat-raised-button color="primary" (click)="lightbox.open(0)">Open Lightbox</button>-->
     <button mat-raised-button color="accent" class="btn btn-primary"
         (click)="lightbox.open(0, 'lightbox', {panelClass: 'fullscreen'})">
         See in fullscreen</button>

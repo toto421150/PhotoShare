@@ -8,34 +8,24 @@ import { Lightbox } from 'ng-gallery/lightbox';
   styleUrls: ['./diapo.component.css']
 })
 export class DiapoComponent implements OnInit {
-
-  items: GalleryItem[]= [];
-
-  imageData = data;
-
   constructor(public gallery: Gallery, public lightbox: Lightbox) {
   }
-
+  items: GalleryItem[]= [];
+  imageData = data;
   ngOnInit() {
-
-    /** Basic Gallery Example */
-
-    // Creat gallery items
+    // Affichage des images et de leur prévisualisation
     this.items = this.imageData.map(item => new ImageItem({ src: item.srcUrl, thumb: item.srcUrl }));
 
-
-    /** Lightbox Example */
-
-    // Get a lightbox gallery ref
+    // Lightbox pour affichage en plein ecran
     const lightboxRef = this.gallery.ref('lightbox');
 
-    // Add custom gallery config to the lightbox (optional)
+    // Configuration de la lightbox
     lightboxRef.setConfig({
       imageSize: ImageSize.Contain,
       thumbPosition: ThumbnailsPosition.Top
     });
 
-    // Load items into the lightbox gallery ref
+    // Chargement des images au chargement de la page
     lightboxRef.load(this.items);
   }
 }
