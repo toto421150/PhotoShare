@@ -1,0 +1,55 @@
+.login_form {
+  border-radius: 25px;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10%;
+  border: 1px solid #dbdbdb;
+  margin-top: 10%;
+  padding-top: 10%;
+  text-align: center;
+  background-color: #8b2525;
+}
+
+.logipage__text {
+  width: 70%;
+  height: 36px;
+  margin: 5px;
+  border: 1px solid #dbdbdb;
+  background-color: #8b2525;
+  color: #fafafa;
+  padding-left: 10px;
+}
+.login__button {
+  width: 70%;
+  height: 36px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+  border: 1px solid #0e863c;
+  background-color: #0e863c;
+  color: rgb(221, 221, 221);
+}
+
+::placeholder {
+  color: #fafafa;
+  opacity: 0.5;
+}
+
+.img-radius {
+  width: 20%;
+}
+
+.card {
+  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  box-shadow: 0 1px 20px 0 rgba(69, 90, 100, 0.08);
+  border: none;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  background-color: #d12d2d;
+}
+
+.b-b-default {
+  border-bottom: 1px solid #d12d2d;
+  font-weight: 500;
+}

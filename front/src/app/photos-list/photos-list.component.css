@@ -1,0 +1,91 @@
+td,
+th {
+  width: 45%;
+}
+
+#header {
+  overflow-y: scroll;
+}
+#comment {
+  font-size: large;
+}
+
+#padding {
+  padding-left: 5%;
+  padding-right: 6%;
+}
+
+.form-control {
+  width: 80%;
+}
+
+table {
+  width: 90%;
+  text-align: center;
+  margin-bottom: 0px;
+  border: rgb(156, 156, 156);
+}
+
+mat-nav-list {
+  max-height: 75%;
+  overflow-y: scroll;
+  padding-top: 0px;
+}
+
+img {
+  max-width: 50%;
+}
+
+figcaption {
+  color: #99aab5;
+  font-style: italic;
+  font-size: smaller;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06d85f;
+  cursor: pointer;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}

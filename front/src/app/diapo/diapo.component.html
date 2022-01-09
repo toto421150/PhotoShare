@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-center">
+    <h2>Preview all your photos beneath !</h2>
+</div>
+<gallery class="custom" id="basic-test" fluid [items]="items" [autoPlay]="true" [dots]="false"></gallery>
+
+<br>
+<div class="d-flex justify-content-center">
+    <!--<button mat-raised-button color="primary" (click)="lightbox.open(0)">Open Lightbox</button>-->
+    <button mat-raised-button color="accent" class="btn btn-primary"
+        (click)="lightbox.open(0, 'lightbox', {panelClass: 'fullscreen'})">
+        See in fullscreen</button>
+</div>
