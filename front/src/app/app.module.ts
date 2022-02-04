@@ -16,6 +16,8 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatListModule } from '@angular/material/list';
 
 import { FilterPipe } from './filter.pipe';
+import { UploadImagesComponent } from './components/upload-images/upload-images.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,8 +28,10 @@ import { FilterPipe } from './filter.pipe';
     DiapoComponent,
     PhotosListComponent,
     FilterPipe,
+    UploadImagesComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

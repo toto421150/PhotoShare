@@ -1,19 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { FileUploadService } from 'src/app/services/file-upload.service';
+
 @Component({
   selector: 'app-photos-list',
   templateUrl: './photos-list.component.html',
   styleUrls: ['./photos-list.component.css']
 })
 export class PhotosListComponent implements OnInit {
-  constructor() {}
+  
+    // Declaration des variables
+    popupUpdate=false;
+    imageData = data;
+    searchText: string="";
+    myTempIndex:number=-1;
+    myTempurl:string="";
+    myTempComment:string="";
+    imageInfos?: Observable<any>;
+  
+  constructor(private uploadService: FileUploadService) {}
   ngOnInit() {
+    this.imageInfos = this.uploadService.getFiles();
   }
-  // Declaration des variables
-  popupUpdate=false;
-  imageData = data;
-  searchText: string="";
-  myTempIndex:number=-1;
-  myTempComment:string="";
+
+
 
   //Fonction d'upload des photos
   createPhoto(){
@@ -34,27 +44,20 @@ export class PhotosListComponent implements OnInit {
 
   //Fonction de suppression de photos
   deletePhoto(i:number){
+    
+    //this.imageData.splice(i, 1);
+    this.imageInfos?.subscribe((value) => { this.uploadService.deleteFile(value[i].url); });
+    this.imageInfos?.subscribe((value) => {console.log(value[i].url); })
     console.log("delete works!");
-    this.imageData.splice(i, 1);
+    this.ngOnInit()
   }
 }
 
 const data = [
   {
-    srcUrl: 'https://preview.ibb.co/jrsA6R/img12.jpg',
+    url: 'https://preview.ibb.co/jrsA6R/img12.jpg',
+    name:"tt",
     comment: "yeet"
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/kPE1D6/clouds.jpg',
-    comment: "jaaaj"
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/mwsA6R/img7.jpg',
-    comment: "showdown"
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/kZGsLm/img8.jpg',
-    comment: "j'aime le gluten"
   }
 ];
 

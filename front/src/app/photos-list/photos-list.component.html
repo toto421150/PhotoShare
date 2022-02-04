@@ -7,7 +7,7 @@
 
 <!-- Tableau de photos -->
 <div class=" d-flex justify-content-center" id="header">
-    <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0;">
+    <table class="table table-bordered table-dark" *ngIf="(imageInfos | async | filter: searchText).length > 0;">
         <thead>
             <!--Ligne Header-->
             <tr>
@@ -24,15 +24,15 @@
             *ngIf="(imageData | filter: searchText).length > 0; else noResults">
             <tbody>
                 <!--Lignes Body (forloop sur le tableau d'images)-->
-                <tr *ngFor="let img of imageData | filter: searchText; let i = index;">
+                <tr *ngFor="let img of imageInfos | async | filter: searchText; let i = index;">
                     <!--Appel de la pipeline filtre-->
                     <td>
                         <figure>
-                            <img [src]="img.srcUrl" />
-                            <figcaption>{{img.srcUrl}}</figcaption>
+                            <img [src]="img.url" />
+                            <figcaption>{{img.url}}</figcaption>
                         </figure>
                     </td>
-                    <td class="align-middle" id="comment">{{img.comment}}</td>
+                    <td class="align-middle" id="comment">{{img.name}}</td>
                     <td class="align-middle">
                         <div class="container">
                             <div class="row my-5">
@@ -60,7 +60,7 @@
         <h2>Update Comment</h2>
         <p>Image Preview :</p>
         <div class="d-flex justify-content-center">
-            <img [src]="imageData[myTempIndex].srcUrl" />
+            <img [src]="myTempurl" />
         </div>
         <hr>
         <p>Input your new comment</p>
