@@ -1,13 +1,14 @@
 <!-- Section de filtrage & Upload de photos -->
-<div class="d-flex justify-content-between my-4" id="padding">
-    <input class=" form-control" type="text" [(ngModel)]="searchText" placeholder="Search">
-    <button class="btn btn-success" type="button" (click)="createPhoto()">Upload new photos</button>
+
+<div id="padding">
+    <app-upload-images></app-upload-images>
+    <input class=" form-control" type="text" [(ngModel)]="searchText" placeholder="Search your photos by comment">
 </div>
 
 
 <!-- Tableau de photos -->
 <div class=" d-flex justify-content-center" id="header">
-    <table class="table table-bordered table-dark" *ngIf="(imageInfos | async | filter: searchText).length > 0;">
+    <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0;">
         <thead>
             <!--Ligne Header-->
             <tr>
@@ -18,36 +19,35 @@
         </thead>
     </table>
 </div>
-<mat-nav-list>
-    <div class="d-flex justify-content-center">
-        <table class="table table-bordered table-dark"
-            *ngIf="(imageData | filter: searchText).length > 0; else noResults">
-            <tbody>
-                <!--Lignes Body (forloop sur le tableau d'images)-->
-                <tr *ngFor="let img of imageInfos | async | filter: searchText; let i = index;">
-                    <!--Appel de la pipeline filtre-->
-                    <td>
-                        <figure>
-                            <img [src]="img.url" />
-                            <figcaption>{{img.url}}</figcaption>
-                        </figure>
-                    </td>
-                    <td class="align-middle" id="comment">{{img.name}}</td>
-                    <td class="align-middle">
-                        <div class="container">
-                            <div class="row my-5">
-                                <button type="button" class="btn btn-warning" (click)="updateIndex(i)">Modify</button>
-                            </div>
-                            <div class="row my-5">
-                                <button type="button" class="btn btn-danger" (click)="deletePhoto(i)">Delete</button>
-                            </div>
+<!-- <mat-nav-list> -->
+<div class="d-flex justify-content-center overflow">
+    <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0; else noResults">
+        <tbody>
+            <!--Lignes Body (forloop sur le tableau d'images)-->
+            <tr *ngFor="let img of imageData | filter: searchText; let i = index;">
+                <!--Appel de la pipeline filtre-->
+                <td class="align-middle">
+                    <figure>
+                        <img [src]="img.url" />
+                        <figcaption>{{img.name}}</figcaption>
+                    </figure>
+                </td>
+                <td class="align-middle" id="comment">{{img.comment}}</td>
+                <td class="align-middle">
+                    <div class="container">
+                        <div class="row my-5">
+                            <button type="button" class="btn btn-warning" (click)="updateIndex(i)">Modify</button>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</mat-nav-list>
+                        <div class="row my-5">
+                            <button type="button" class="btn btn-danger" (click)="deletePhoto(i)">Delete</button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- </mat-nav-list> -->
 
 <!--Template pour l'affichage d'aucun résultat-->
 <ng-template #noResults>

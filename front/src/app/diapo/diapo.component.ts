@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Gallery, GalleryItem, ImageItem, ThumbnailsPosition, ImageSize } from 'ng-gallery';
 import { Lightbox } from 'ng-gallery/lightbox';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-diapo',
@@ -8,39 +9,40 @@ import { Lightbox } from 'ng-gallery/lightbox';
   styleUrls: ['./diapo.component.css']
 })
 export class DiapoComponent implements OnInit {
-  constructor(public gallery: Gallery, public lightbox: Lightbox) {
-  }
-  items: GalleryItem[]= [];
-  imageData = data;
+  constructor(public gallery: Gallery, public lightbox: Lightbox,private fileService: FileService) {}
+
   ngOnInit() {
-    // Affichage des images et de leur prévisualisation
-    this.items = this.imageData.map(item => new ImageItem({ src: item.srcUrl, thumb: item.srcUrl }));
+    this.fileService.getAllPhotos().subscribe(data=> {// GET: list des photos
+      if(data.length!=0){
+        for (let i = 0; i < data.length; i++) {
+          if (i==0){
+            this.imageData = [{srcUrl:data[i].url}];
+          }else{
+            this.imageData = [...this.imageData, {srcUrl:data[i].url}];
+          }
+        }
 
-    // Lightbox pour affichage en plein ecran
-    const lightboxRef = this.gallery.ref('lightbox');
+        // Affichage des images et de leur prévisualisation
+        this.items = this.imageData.map(item => new ImageItem({ src: item.srcUrl, thumb: item.srcUrl }));
+        // Lightbox pour affichage en plein ecran
+        const lightboxRef = this.gallery.ref('lightbox');
+        // Configuration de la lightbox
+        lightboxRef.setConfig({
+          imageSize: ImageSize.Contain,
+          thumbPosition: ThumbnailsPosition.Top
+        });
+        // Chargement des images au chargement de la page
+        lightboxRef.load(this.items);
+      }else{
+        this.empty=true;
+      }
 
-    // Configuration de la lightbox
-    lightboxRef.setConfig({
-      imageSize: ImageSize.Contain,
-      thumbPosition: ThumbnailsPosition.Top
-    });
 
-    // Chargement des images au chargement de la page
-    lightboxRef.load(this.items);
+    })
   }
+ 
+  items: GalleryItem[]= [];
+  imageData = [{srcUrl: ''}];
+  empty=false;
 }
 
-const data = [
-  {
-    srcUrl: 'https://preview.ibb.co/jrsA6R/img12.jpg',
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/kPE1D6/clouds.jpg',
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/mwsA6R/img7.jpg',
-  },
-  {
-    srcUrl: 'https://preview.ibb.co/kZGsLm/img8.jpg',
-  }
-];
