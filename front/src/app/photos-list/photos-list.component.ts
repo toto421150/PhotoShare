@@ -22,7 +22,18 @@ export class PhotosListComponent implements OnInit {
 
   // Declaration des variables
   popupUpdate=false;
-  imageData :any= [];
+  imageData :any= [
+    // {
+    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
+    //   name:"toto.jpg",
+    //   comment:"C'est Toto"
+    // },
+    // {
+    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
+    //   name:"greg.jpg",
+    //   comment:"C'est greg"
+    // },
+  ];
   searchText: string="";
   myTempIndex:number=-1;
   myTempurl:string="";
