@@ -1,2 +1,0 @@
-# PhotoShare
-N-tiers Project
