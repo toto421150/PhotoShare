@@ -15,8 +15,8 @@ import { LightboxModule } from 'ng-gallery/lightbox';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { MatListModule } from '@angular/material/list';
 
-import { FilterPipe } from './filter.pipe';
-import { UploadImagesComponent } from './components/upload-images/upload-images.component';
+import { FilterPipe } from './services/filter.pipe';
+import { UploadImagesComponent } from './upload-images/upload-images.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 

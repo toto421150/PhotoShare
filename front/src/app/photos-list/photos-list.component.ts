@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { FileUploadService } from 'src/app/services/file-upload.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-photos-list',
@@ -8,56 +8,54 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
   styleUrls: ['./photos-list.component.css']
 })
 export class PhotosListComponent implements OnInit {
-  
-    // Declaration des variables
-    popupUpdate=false;
-    imageData = data;
-    searchText: string="";
-    myTempIndex:number=-1;
-    myTempurl:string="";
-    myTempComment:string="";
-    imageInfos?: Observable<any>;
-  
-  constructor(private uploadService: FileUploadService) {}
+  constructor(private fileService: FileService) {}
+
   ngOnInit() {
-    this.imageInfos = this.uploadService.getFiles();
+    //this.imageInfos = this.fileService.getFiles();
+    this.fileService.getAllPhotos().subscribe(data=> {// GET: list des photos
+      for (let i = 0; i < data.length; i++) {
+        this.imageData = [...this.imageData, {url:data[i].url,name:data[i].name,comment:data[i].comment}];
+      }
+      console.log(this.imageData)
+    })
   }
 
-
-
-  //Fonction d'upload des photos
-  createPhoto(){
-    console.log("create works!");
-  }
+  // Declaration des variables
+  popupUpdate=false;
+  imageData :any= [
+    // {
+    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
+    //   name:"toto.jpg",
+    //   comment:"C'est Toto"
+    // },
+    // {
+    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
+    //   name:"greg.jpg",
+    //   comment:"C'est greg"
+    // },
+  ];
+  searchText: string="";
+  myTempIndex:number=-1;
+  myTempurl:string="";
+  myTempComment:string="";
+  //imageInfos?: Observable<any>;
+    
 
   //Fonctions de modification des commentaires
   updateIndex(index:number){
     this.myTempIndex=index;
-    console.log(this.myTempIndex);
+    // console.log(this.myTempIndex);
     this.popupUpdate=true;
   }
   updatePhoto(inputComment:string){
     this.imageData[this.myTempIndex].comment=inputComment;
     this.myTempComment="";
-
   }
 
   //Fonction de suppression de photos
   deletePhoto(i:number){
-    
-    //this.imageData.splice(i, 1);
-    this.imageInfos?.subscribe((value) => { this.uploadService.deleteFile(value[i].url); });
-    this.imageInfos?.subscribe((value) => {console.log(value[i].url); })
-    console.log("delete works!");
-    this.ngOnInit()
+    this.fileService.deletePhoto(this.imageData[i].name).subscribe(data=>{
+    })
+    window.location.reload()
   }
 }
-
-const data = [
-  {
-    url: 'https://preview.ibb.co/jrsA6R/img12.jpg',
-    name:"tt",
-    comment: "yeet"
-  }
-];
-

@@ -10,6 +10,11 @@ export class NavBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if(window.sessionStorage.getItem('username')!= null){
+      this.logged = true
+    }else{
+        this.logged = false
+    }
   }
-
+  logged=false;
 }
