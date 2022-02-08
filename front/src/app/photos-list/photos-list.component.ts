@@ -23,16 +23,25 @@ export class PhotosListComponent implements OnInit {
   // Declaration des variables
   popupUpdate=false;
   imageData :any= [
-    // {
-    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
-    //   name:"toto.jpg",
-    //   comment:"C'est Toto"
-    // },
-    // {
-    //   url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
-    //   name:"greg.jpg",
-    //   comment:"C'est greg"
-    // },
+    {
+      url:"https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg",
+      name:"toto.jpg",
+      comment:"C'est large"
+    },
+    {
+      url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/OCR-A_char_Long_Vertical_Mark.svg/1200px-OCR-A_char_Long_Vertical_Mark.svg.png",
+      name:"greg.jpg",
+      comment:"C'est long"
+    },    {
+      url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
+      name:"toto.jpg",
+      comment:"C'est Toto"
+    },
+    {
+      url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
+      name:"greg.jpg",
+      comment:"C'est greg"
+    },
   ];
   searchText: string="";
   myTempIndex:number=-1;
@@ -44,6 +53,7 @@ export class PhotosListComponent implements OnInit {
   //Fonctions de modification des commentaires
   updateIndex(index:number){
     this.myTempIndex=index;
+    this.myTempurl=this.imageData[this.myTempIndex].url;
     // console.log(this.myTempIndex);
     this.popupUpdate=true;
   }
