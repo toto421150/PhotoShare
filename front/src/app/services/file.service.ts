@@ -12,9 +12,8 @@ export class FileService {
 
   uploadPhoto(file: File) /*Observable<HttpEvent<any>>*/ {
     const formData: FormData = new FormData();
-    formData.append('file', file);
-    return this.http.post<image>(`${this.baseUrl}/upload`, formData
-    );
+    formData.append('file', file);   
+    return this.http.post<image>(`${this.baseUrl}/upload`, formData);
   }
 
   getAllPhotos(): Observable<image[]> {

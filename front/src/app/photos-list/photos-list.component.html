@@ -7,34 +7,48 @@
 
 
 <!-- Tableau de photos -->
-<div class=" d-flex justify-content-center" id="header">
+<!-- <div class=" d-flex justify-content-center" id="header">
     <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0;">
         <thead>
-            <!--Ligne Header-->
+            
             <tr>
-                <th>Photo</th>
-                <th>Comment</th>
-                <th>Actions</th>
+                <th class="col1">Photo</th>
+                <th class="col2">Comment</th>
+                <th class="col3">Actions</th>
             </tr>
         </thead>
     </table>
-</div>
-<!-- <mat-nav-list> -->
+</div> -->
+
 <div class="d-flex justify-content-center overflow">
     <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0; else noResults">
+        <thead>
+            <!--Ligne Header-->
+            <tr>
+                <th class="col1">Photo</th>
+                <th class="col2">Comment</th>
+                <th class="col3">Actions</th>
+            </tr>
+        </thead>
         <tbody>
             <!--Lignes Body (forloop sur le tableau d'images)-->
             <tr *ngFor="let img of imageData | filter: searchText; let i = index;">
                 <!--Appel de la pipeline filtre-->
-                <td class="align-middle">
-                    <figure>
-                        <img [src]="img.url" />
-                        <figcaption>{{img.name}}</figcaption>
-                    </figure>
+                <td class="align-middle col1">
+                    <!-- <figure> -->
+                    <img [src]="img.url" />
+
+                    <!-- </figure> -->
                 </td>
-                <td class="align-middle" id="comment">{{img.comment}}</td>
-                <td class="align-middle">
-                    <div class="container">
+                <td class="align-middle col2" id="comment">
+                    <!-- <div class="textoverflow"> -->
+                    <!-- <figcaption>Image name: {{img.name}}</figcaption>
+                    <hr> -->
+                    <h2>{{img.comment}}</h2>
+                    <!-- </div> -->
+                </td>
+                <td class="align-middle col3">
+                    <div class=" container">
                         <div class="row my-5">
                             <button type="button" class="btn btn-warning" (click)="updateIndex(i)">Modify</button>
                         </div>
@@ -59,9 +73,9 @@
     <div class="popup">
         <h2>Update Comment</h2>
         <p>Image Preview :</p>
-        <div class="d-flex justify-content-center">
-            <img [src]="myTempurl" />
-        </div>
+
+        <img [src]="myTempurl" class="previewImg" />
+
         <hr>
         <p>Input your new comment</p>
         <input type="text" class="w-100" [(ngModel)]="myTempComment">

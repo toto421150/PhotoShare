@@ -1,11 +1,18 @@
-td,
-th {
-  width: 45%;
+/* .col1 {
+  width: 80%;
+} */
+.col2 {
+  width: 15%;
+  max-width: 200px;
+  word-break: break-all;
+}
+.col3 {
+  width: 5%;
 }
 
-tr {
+/* tr {
   max-height: 200px;
-}
+} */
 
 #header {
   overflow-y: scroll;
@@ -34,14 +41,19 @@ table {
 }
 
 img {
-  max-width: 50%;
+  max-height: 300px;
+  max-width: 850px;
+}
+.previewImg {
   max-height: 200px;
+  max-width: 100%;
 }
 
 figcaption {
   color: #99aab5;
   font-style: italic;
   font-size: smaller;
+  text-overflow: clip;
 }
 
 .overlay {

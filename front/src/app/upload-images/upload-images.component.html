@@ -11,6 +11,8 @@
 
 <div class="input-group">
   <input class="form-control" type="file" accept="image/*" multiple (change)="selectFiles($event)" multiple>
+  <span class="input-group-btn input-space"></span>
+  <input type="text" class="form-control" placeholder="Your comment" [(ngModel)]="inputComment">
   <button class="btn btn-success" [disabled]="!selectedFiles" (click)="uploadFiles()"> Upload new photos
   </button>
 </div>

@@ -9,6 +9,8 @@ import { FileService } from 'src/app/services/file.service';
   styleUrls: ['./upload-images.component.css']
 })
 export class UploadImagesComponent implements OnInit {
+
+  inputComment:string=""
   selectedFiles?: FileList;
   progressInfos: any[] = [];
   message: string[] = [];
@@ -20,6 +22,7 @@ export class UploadImagesComponent implements OnInit {
 
   ngOnInit(): void {
     this.imageInfos = this.uploadService.getAllPhotos();
+    
   }
 
   selectFiles(event: any): void {
