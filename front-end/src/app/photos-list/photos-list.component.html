@@ -35,10 +35,7 @@
             <tr *ngFor="let img of imageData | filter: searchText; let i = index;">
                 <!--Appel de la pipeline filtre-->
                 <td class="align-middle col1">
-                    <!-- <figure> -->
                     <img [src]="img.url" />
-
-                    <!-- </figure> -->
                 </td>
                 <td class="align-middle col2" id="comment">
                     <!-- <div class="textoverflow"> -->
@@ -50,7 +47,7 @@
                 <td class="align-middle col3">
                     <div class=" container">
                         <div class="row my-5">
-                            <button type="button" class="btn btn-warning" (click)="updateIndex(i)">Modify</button>
+                            <button type="button" class="btn btn-warning" (click)="openUI(img.id)">Modify</button>
                         </div>
                         <div class="row my-5">
                             <button type="button" class="btn btn-danger" (click)="deletePhoto(i)">Delete</button>
@@ -81,7 +78,7 @@
         <input type="text" class="w-100" [(ngModel)]="myTempComment">
         <hr>
         <div class="d-flex justify-content-between">
-            <button class="btn btn-success" (click)="updatePhoto(myTempComment)"
+            <button class="btn btn-success" (click)="updateComment(myTempComment)"
                 (click)="popupUpdate = false">Confirm</button>
             <button class="btn btn-danger" (click)="popupUpdate = false">Cancel</button>
         </div>

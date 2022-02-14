@@ -14,7 +14,7 @@ export class PhotosListComponent implements OnInit {
     //this.imageInfos = this.fileService.getFiles();
     this.fileService.getAllPhotos().subscribe(data=> {// GET: list des photos
       for (let i = 0; i < data.length; i++) {
-        this.imageData = [...this.imageData, {url:data[i].url,name:data[i].name,comment:data[i].comment}];
+        this.imageData = [...this.imageData, {id:[i],url:data[i].url,name:data[i].name,comment:data[i].comment}];
       }
       console.log(this.imageData)
     })
@@ -32,20 +32,25 @@ export class PhotosListComponent implements OnInit {
   popupUpdate=false;
   imageData :any= [
     {
+      id:0,
       url:"https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg",
       name:"toto.jpg",
       comment:"C'est large"
     },
     {
+      id:1,
       url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/OCR-A_char_Long_Vertical_Mark.svg/1200px-OCR-A_char_Long_Vertical_Mark.svg.png",
       name:"greg.jpg",
       comment:"C'est long"
-    },    {
+    },
+    {
+      id:2,
       url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
       name:"toto.jpg",
       comment:"C'est Toto"
     },
     {
+      id:3,
       url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
       name:"greg.jpg",
       comment:"C'est greg"
@@ -58,26 +63,21 @@ export class PhotosListComponent implements OnInit {
     
 
   //Fonctions de modification des commentaires
-  updateIndex(index:number){
-    this.myTempIndex=index;
-    this.myTempurl=this.imageData[this.myTempIndex].url;
-    // console.log(this.myTempIndex);
+  openUI(id:number){
+    this.myTempIndex=this.imageData[id].id;
+    this.myTempurl=this.imageData[id].url;
     this.popupUpdate=true;
   }
-  updatePhoto(inputComment:string){
-    this.imageData[this.myTempIndex].comment=inputComment;
-    this.patchPhotoAPI(this.myTempIndex,inputComment);
-    // this.myTempComment="";
+  updateComment(inputComm:string){
+    this.imageData[this.myTempIndex].comment=inputComm;
+    this.patchPhotoAPI(this.myTempIndex,inputComm);
+    // window.location.reload();
   }
 
   //Fonction de suppression de photos
   deletePhoto(i:number){
     this.fileService.deletePhoto(this.imageData[i].name).subscribe(data=>{
     })
-    window.location.reload()
+    window.location.reload();
   }
-
-  // saveCommentaire(id:number,comment:string) {
-  //   this.patchPhotoAPI(id,comment);
-  // }
 }

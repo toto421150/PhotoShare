@@ -9,8 +9,8 @@ export class FilterPipe implements PipeTransform {
     if (!searchText) return items;
     return items.filter(item => {
       // console.log(item[Object.keys(item)[2]])
-      // key0 : url, key1: name, key2: comment
-      return String(item[Object.keys(item)[2]]).toLowerCase().includes(searchText.toLowerCase());//Retourne les objets filtrés par rapport aux commentaires seulement
+      // key0: id, key1 : url, key2: name, key3: comment
+      return String(item[Object.keys(item)[3]]).toLowerCase().includes(searchText.toLowerCase());//Retourne les objets filtrés par rapport aux commentaires seulement
       }); 
    }
 }
