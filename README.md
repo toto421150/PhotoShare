@@ -40,7 +40,7 @@ Le projet s'est découpé en plusieurs étapes:
     - Ajustements
 
 ## Preview de l'application
-![alt text](https://github.com/toto421150/PhotoShare/blob/main/N-tiers.jpg?raw=true)
+![alt text](https://github.com/toto421150/PhotoShare/blob/main/Documents%20Rendus/Preview.jpg?raw=true)
 
 ## Developers
 
