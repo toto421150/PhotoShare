@@ -20,6 +20,14 @@ export class PhotosListComponent implements OnInit {
     })
   }
 
+  patchPhotoAPI(id:number,comment:string){
+    this.fileService.patchPhoto(id,comment).subscribe(data=>{
+      window.location.reload();
+    },
+    // error => alert("Bad input")
+    )
+  }
+
   // Declaration des variables
   popupUpdate=false;
   imageData :any= [
@@ -47,7 +55,6 @@ export class PhotosListComponent implements OnInit {
   myTempIndex:number=-1;
   myTempurl:string="";
   myTempComment:string="";
-  //imageInfos?: Observable<any>;
     
 
   //Fonctions de modification des commentaires
@@ -59,7 +66,8 @@ export class PhotosListComponent implements OnInit {
   }
   updatePhoto(inputComment:string){
     this.imageData[this.myTempIndex].comment=inputComment;
-    this.myTempComment="";
+    this.patchPhotoAPI(this.myTempIndex,inputComment);
+    // this.myTempComment="";
   }
 
   //Fonction de suppression de photos
@@ -68,4 +76,8 @@ export class PhotosListComponent implements OnInit {
     })
     window.location.reload()
   }
+
+  // saveCommentaire(id:number,comment:string) {
+  //   this.patchPhotoAPI(id,comment);
+  // }
 }

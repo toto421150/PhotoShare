@@ -16,8 +16,13 @@ export class FileService {
     return this.http.post<image>(`${this.baseUrl}/upload`, formData);
   }
 
-  getAllPhotos(): Observable<image[]> {
+  getAllPhotos() {
     return this.http.get<image[]>(`${this.baseUrl}/files`);
+  }
+
+  patchPhoto(id:number,comment:string){
+    var body = {"comment" : comment };
+    return this.http.patch<image[]>(`${this.baseUrl}/post/`+id,body);
   }
 
   deletePhoto(filename: string){
