@@ -31,4 +31,17 @@ public class PostService {
 		return PostRepo.save(post_changed.get());
 	}
 	
+	public void delete(int id) {
+		PostRepo.deleteById(id);
+		
+	}
+	
+	public String retrievefilenamebyid(int id) {
+		
+		Optional<Post> post_changed = PostRepo.findById(id);
+		return post_changed.get().getPostpath();
+		
+		
+	}
+	
 }

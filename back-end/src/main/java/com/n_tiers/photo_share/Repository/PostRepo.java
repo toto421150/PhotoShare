@@ -13,9 +13,10 @@ import org.springframework.data.repository.CrudRepository;
 @Repository
 public interface PostRepo extends CrudRepository<Post, Integer>{
 
+void delete(Post post);
 Post save(Post post);	
 ArrayList<Post> findAll();
-Optional<Post> save(Optional<Post> post_changed);
+//Optional<Post> save(Optional<Post> post_changed);
 	
 	
 }
