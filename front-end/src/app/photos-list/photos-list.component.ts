@@ -12,11 +12,17 @@ export class PhotosListComponent implements OnInit {
 
   ngOnInit() {
     //this.imageInfos = this.fileService.getFiles();
-    this.fileService.getAllPhotos().subscribe(data=> {// GET: list des photos
+    // this.fileService.getAllPhotos().subscribe(data=> {// GET: list des photos
+    //   // for (let i = 0; i < data.length; i++) {
+    //   for (let i = data.length-1; i > 0; i--) {
+    //     this.imageData = [...this.imageData, {url:data[i].url,name:data[i].name,comment:data[i].comment}];
+    //   }
+    // })
+    this.fileService.getAllPosts().subscribe(data=> {// GET: list des photos  
       for (let i = 0; i < data.length; i++) {
-        this.imageData = [...this.imageData, {id:[i],url:data[i].url,name:data[i].name,comment:data[i].comment}];
+        this.postData = [...this.postData, {id:data[i].id,comment:data[i].comment,path:data[i].postpath,url:"http://localhost:8080/files/"+data[i].postpath,name:data[i].postpath}];
       }
-      console.log(this.imageData)
+      // console.log(this.postData)
     })
   }
 
@@ -30,54 +36,42 @@ export class PhotosListComponent implements OnInit {
 
   // Declaration des variables
   popupUpdate=false;
-  imageData :any= [
-    {
-      id:0,
-      url:"https://upload.wikimedia.org/wikipedia/commons/4/45/Wide_lightning.jpg",
-      name:"toto.jpg",
-      comment:"C'est large"
-    },
-    {
-      id:1,
-      url:"https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/OCR-A_char_Long_Vertical_Mark.svg/1200px-OCR-A_char_Long_Vertical_Mark.svg.png",
-      name:"greg.jpg",
-      comment:"C'est long"
-    },
-    {
-      id:2,
-      url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_gagnaire_thomas.jpg",
-      name:"toto.jpg",
-      comment:"C'est Toto"
-    },
-    {
-      id:3,
-      url:"https://www.telecom-st-etienne.fr/intranet/photos/2019_biron_gregoire.jpg",
-      name:"greg.jpg",
-      comment:"C'est greg"
-    },
-  ];
+  imageData :any= [];
+  postData:any=[]
   searchText: string="";
-  myTempIndex:number=-1;
+  myTempIndex:any;
   myTempurl:string="";
   myTempComment:string="";
+  selectedID:number=-1;
     
 
   //Fonctions de modification des commentaires
   openUI(id:number){
-    this.myTempIndex=this.imageData[id].id;
-    this.myTempurl=this.imageData[id].url;
+    this.selectedID=id
+    this.myTempIndex=this.getIndex(id)
+    console.log(this.postData[this.myTempIndex])
+    this.myTempurl=this.postData[this.myTempIndex].url;
     this.popupUpdate=true;
   }
   updateComment(inputComm:string){
-    this.imageData[this.myTempIndex].comment=inputComm;
-    this.patchPhotoAPI(this.myTempIndex,inputComm);
-    // window.location.reload();
+    // this.postData[this.myTempIndex].comment=inputComm;
+    this.patchPhotoAPI(this.selectedID,inputComm);
   }
 
   //Fonction de suppression de photos
-  deletePhoto(i:number){
-    this.fileService.deletePhoto(this.imageData[i].name).subscribe(data=>{
+  deletePhoto(id:number){
+    this.fileService.deletePost(id).subscribe(data=>{
     })
     window.location.reload();
+  }
+
+  getIndex(id:number){
+    
+    for (let i = 0; i < this.postData.length; i++) {
+      if(id==this.postData[i].id){
+        return i
+      }
+    }
+    return -1
   }
 }

@@ -21,7 +21,7 @@
 </div> -->
 
 <div class="d-flex justify-content-center overflow">
-    <table class="table table-bordered table-dark" *ngIf="(imageData | filter: searchText).length > 0; else noResults">
+    <table class="table table-bordered table-dark" *ngIf="(postData | filter: searchText).length > 0; else noResults">
         <thead>
             <!--Ligne Header-->
             <tr>
@@ -32,7 +32,7 @@
         </thead>
         <tbody>
             <!--Lignes Body (forloop sur le tableau d'images)-->
-            <tr *ngFor="let img of imageData | filter: searchText; let i = index;">
+            <tr *ngFor="let img of postData | filter: searchText;">
                 <!--Appel de la pipeline filtre-->
                 <td class="align-middle col1">
                     <img [src]="img.url" />
@@ -50,7 +50,7 @@
                             <button type="button" class="btn btn-warning" (click)="openUI(img.id)">Modify</button>
                         </div>
                         <div class="row my-5">
-                            <button type="button" class="btn btn-danger" (click)="deletePhoto(i)">Delete</button>
+                            <button type="button" class="btn btn-danger" (click)="deletePhoto(img.id)">Delete</button>
                         </div>
                     </div>
                 </td>

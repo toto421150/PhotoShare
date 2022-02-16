@@ -65,6 +65,13 @@ export class UploadImagesComponent implements OnInit {
           const msg = 'Could not upload the file: ' + file.name;
           this.message.push(msg);
         });
+      console.log(file.name)
+      this.uploadService.uploadPost(this.inputComment,file.name).subscribe(data=> {
+      })
+        // uploadPost(comment: String) /*Observable<HttpEvent<any>>*/ {
+        //   var body = {"comment" : comment };
+        //   return this.http.post<image>(`${this.baseUrl}/post`, body);
+        // }
     }
   }
 
